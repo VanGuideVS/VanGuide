@@ -1,0 +1,57 @@
+
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #ffffff; /* Change to white background */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8); /* White background with transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    max-width: 80px; /* Adjust the size of the logo */
+    margin-right: 10px; /* Add spacing between logo and text */
+}
+
+h1, h2 {
+    color: #000000; /* Change text color to black */
+    text-shadow: 2px 2px 4px #ffffff;
+}
+
+h1 {
+    padding: 0 20px; /* Adjust padding for title */
+    font-size: 2em;
+}
+
+h2 {
+    padding: 0 20px; /* Adjust padding for subtitle */
+    font-size: 1.5em;
+}
+
+/* Responsive design for smaller screens */
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+}
+
