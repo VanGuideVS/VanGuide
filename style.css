@@ -182,6 +182,11 @@ button:hover{
     text-decoration: underline;
 }
 
+a.button-link {
+    text-decoration: none;
+}
+
+
 
 @media screen and (max-width: 760px) {
     .home-container {
