@@ -108,7 +108,7 @@ button:hover{
 .home-image {
     opacity: 1;
     transition: opacity 1s ease-in-out;
-    max-width: 100%;
+    max-width: 45%;
     height: auto;
 }
   
@@ -138,7 +138,49 @@ button:hover{
     margin: 0 auto; /* Center the paragraph */
     max-width: 700px; /* Max width for better readability */
 }
-  
+
+.footer {
+    background-color: #f4f4f4; /* Light gray background for distinction */
+    padding: 20px 0; /* Vertical padding */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Shadow at the top for some depth */
+}
+
+.footer-container {
+    max-width: 1200px; /* Maximum width of the container */
+    margin: 0 auto; /* Centering the container */
+    padding: 0 20px; /* Side padding */
+    text-align: center; /* Center aligning the text/content */
+}
+
+.footer h5, .footer h6 {
+    margin: 0; /* Resetting default margin */
+    padding: 5px 0; /* Small padding for spacing */
+}
+
+.footer h5 {
+    font-weight: bold; /* Bold font weight for the 'contact us' text */
+    font-size: 18px; /* Adjust font size */
+}
+
+.footer h6 {
+    font-size: 16px; /* Adjust font size */
+    color: #555; /* Slightly darker text for better contrast on light gray background */
+}
+
+/* Optional: Add some hover effect on the email to indicate it's clickable */
+.footer h6:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.footer-email {
+    color: #555;
+    text-decoration: none;
+}
+
+.footer-email:hover {
+    text-decoration: underline;
+}
 
 
 @media screen and (max-width: 760px) {
