@@ -90,6 +90,7 @@ button{
     background: #000;
     cursor: pointer;
     border-radius: 50px;
+    font-weight: bold;
 }
 
 button:hover{
