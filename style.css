@@ -108,7 +108,7 @@ button:hover{
 .home-image {
     opacity: 1;
     transition: opacity 1s ease-in-out;
-    max-width: 45%;
+    max-width: 65%;
     height: auto;
 }
   
