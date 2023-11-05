@@ -150,7 +150,7 @@
             <img src="map.png" alt="Map" class="zoomable-image">
         </div>
 
-        <a href="https://forms.gle/7GC3sXvKwBpQyHkc9" class="button-container">
+        <a href="https://forms.gle/rMbAGT61iB7Bh64U9" class="button-container"> 
             <button class="next-button">Next</button>
         </a>
     </div>
@@ -158,42 +158,39 @@
     <script>
         const imageContainer = document.querySelector('.image-container');
         const zoomableImage = document.querySelector('.zoomable-image');
-
+    
         imageContainer.addEventListener('touchstart', (e) => {
             // Allow pinch zooming on the image
             imageContainer.classList.add('zoomed');
         });
-
+    
         imageContainer.addEventListener('touchend', (e) => {
             // Disable pinch zooming on the image
             imageContainer.classList.remove('zoomed');
         });
-
+    
         imageContainer.addEventListener('click', (e) => {
             // Remove zoom effect when clicked
             imageContainer.classList.remove('zoomed');
         });
-
+    
         const locationInput = document.getElementById("locationInput");
         const locationSuggestions = document.getElementById("locationSuggestions");
         const destinationInput = document.getElementById("destinationInput");
         const destinationSuggestions = document.getElementById("destinationSuggestions");
-
+    
         const predefinedLocations = ["Home", "Work", "Park", "Airport", "Mall"];
         const predefinedDestinations = ["Hotel", "Restaurant", "Beach", "Cinema", "Zoo"];
-
-        locationInput.addEventListener("input", (e) => {
-            const input = e.target.value.toLowerCase();
-            const filteredLocations = predefinedLocations.filter(location => location.toLowerCase().includes(input));
-            displaySuggestions(filteredLocations, locationSuggestions, locationInput);
+    
+        // Add event listener to show suggestions when the text input is clicked
+        locationInput.addEventListener("click", () => {
+            displaySuggestions(predefinedLocations, locationSuggestions, locationInput);
         });
-
-        destinationInput.addEventListener("input", (e) => {
-            const input = e.target.value.toLowerCase();
-            const filteredDestinations = predefinedDestinations.filter(destination => destination.toLowerCase().includes(input));
-            displaySuggestions(filteredDestinations, destinationSuggestions, destinationInput);
+    
+        destinationInput.addEventListener("click", () => {
+            displaySuggestions(predefinedDestinations, destinationSuggestions, destinationInput);
         });
-
+    
         function displaySuggestions(suggestions, suggestionContainer, inputField) {
             suggestionContainer.innerHTML = "";
             suggestions.forEach(suggestion => {
