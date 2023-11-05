@@ -7,22 +7,24 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0; /* Remove default margin for body */
+            margin: 0;
+            overflow: hidden; /* Prevent page scrolling */
         }
 
         .container {
             max-width: 600px;
             margin: 0;
-            padding: 0; /* Remove padding for the container */
+            padding: 0;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .form {
+        .form-container {
             background-color: #f5f5f5;
-            padding: 20px;
             border-radius: 5px;
             position: relative;
+            padding: 20px;
+            z-index: 2; /* Ensure form is in front of the image */
         }
 
         .form-row {
@@ -41,19 +43,19 @@
         }
 
         .form-row .icon {
-            flex-basis: 30px; /* Width for the icon */
+            flex-basis: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #f5f5f5;
-            border: none; /* Remove the border around the icons */
+            border: none;
             border-right: none;
             border-radius: 5px 0 0 5px;
         }
 
         .icon img {
-            max-width: 100%; /* Ensure the image fits within the container */
-            max-height: 100%; /* Ensure the image fits within the container */
+            max-width: 100%;
+            max-height: 100%;
         }
 
         .suggestions {
@@ -63,15 +65,15 @@
             border-radius: 0 0 5px 5px;
             max-height: 100px;
             overflow-y: auto;
-            top: 100%; /* Position the dropdown below the input */
-            width: calc(100% - 30px); /* Match the input width including the icon */
-            display: none; /* Hide by default */
-            z-index: 1; /* Adjust the z-index to ensure it's on top */
-            right: 0; /* Shift the dropdown to the right to align with the text box */
+            top: 100%;
+            width: calc(100% - 30px);
+            display: none;
+            z-index: 1;
+            right: 0;
         }
 
         .form-row:hover .suggestions {
-            display: block; /* Show the suggestions on input focus */
+            display: block;
         }
 
         .suggestion {
@@ -79,20 +81,34 @@
             cursor: pointer;
         }
 
-        /* Styles for the black bar */
         .black-bar {
-            height: 2px; /* Thinner black bar */
-            background-color: #ccc; /* Slightly more gray */
+            height: 2px;
+            background-color: #ccc;
             position: absolute;
             width: 100%;
             bottom: 0;
-            left: 0; /* Make it touch the left side */
+            left: 0;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden; /* Hide image overflow */
+        }
+
+        .zoomable-image {
+            width: 100%; /* Make the image container take the full width */
+            transform-origin: 0 0;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover .zoomable-image {
+            transform: scale(1.2); /* Zoom in by changing the scale */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="form">
+        <div class="form-container">
             <div class="form-row">
                 <div class="icon"><img src="location-icon.png" alt="Location Icon"></div>
                 <input type="text" id="locationInput" placeholder="My location">
@@ -103,9 +119,12 @@
                 <input type="text" id="destinationInput" placeholder="My destination">
                 <div class="suggestions" id="destinationSuggestions"></div>
             </div>
-            <div class="black-bar"></div> <!-- Black bar below the second input box -->
+            <div class="black-bar"></div>
         </div>
-        <img src="map.png" alt="Map" style="width: 100%;">
+        <div class="image-container">
+            <!-- Limit the width of the image to match the form-container -->
+            <img src="map.png" alt="Map" class="zoomable-image">
+        </div>
     </div>
     <!-- Large image below the black bar -->
     <!-- <img src="map.png" alt="Map" style="width: 100%; display: block;"> -->
