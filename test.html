@@ -8,7 +8,6 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            overflow: hidden; /* Prevent page scrolling */
         }
 
         .container {
@@ -17,6 +16,7 @@
             padding: 0;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Hide overflowing content */
         }
 
         .form-container {
@@ -24,7 +24,7 @@
             border-radius: 5px;
             position: relative;
             padding: 20px;
-            z-index: 2; /* Ensure form is in front of the image */
+            z-index: 2;
         }
 
         .form-row {
@@ -92,17 +92,16 @@
 
         .image-container {
             position: relative;
-            overflow: hidden; /* Hide image overflow */
+            overflow: hidden;
         }
 
         .zoomable-image {
-            width: 100%; /* Make the image container take the full width */
-            transform-origin: 0 0;
-            transition: transform 0.5s ease;
+            width: 100%;
+            transition: transform 0.5s; /* Add a transition for smooth zooming */
         }
 
-        .image-container:hover .zoomable-image {
-            transform: scale(1.2); /* Zoom in by changing the scale */
+        .zoomed {
+            transform: scale(1.2); /* Zoom in the image */
         }
     </style>
 </head>
@@ -122,14 +121,24 @@
             <div class="black-bar"></div>
         </div>
         <div class="image-container">
-            <!-- Limit the width of the image to match the form-container -->
             <img src="map.png" alt="Map" class="zoomable-image">
         </div>
     </div>
-    <!-- Large image below the black bar -->
-    <!-- <img src="map.png" alt="Map" style="width: 100%; display: block;"> -->
 
     <script>
+        const imageContainer = document.querySelector('.image-container');
+        const zoomableImage = document.querySelector('.zoomable-image');
+
+        imageContainer.addEventListener('touchstart', (e) => {
+            // Allow pinch zooming on the image
+            imageContainer.classList.add('zoomed');
+        });
+
+        imageContainer.addEventListener('touchend', (e) => {
+            // Disable pinch zooming on the image
+            imageContainer.classList.remove('zoomed');
+        });
+
         const locationInput = document.getElementById("locationInput");
         const locationSuggestions = document.getElementById("locationSuggestions");
         const destinationInput = document.getElementById("destinationInput");
