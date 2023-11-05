@@ -104,6 +104,28 @@
         .zoomable-image {
             width: 100%;
         }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Style for the "Next" button */
+        .next-button {
+            background-color: #000; /* Button background color */
+            color: #fff; /* Text color */
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px; /* Adjust padding for button size */
+            font-size: 16px; /* Font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect */
+        .next-button:hover {
+            background-color: #c8c8c8; /* Darker color on hover */
+        }
     </style>
 </head>
 <body>
@@ -126,6 +148,10 @@
         <div class="image-container">
             <img src="map.png" alt="Map" class="zoomable-image">
         </div>
+
+        <a href="https://forms.gle/7GC3sXvKwBpQyHkc9" class="button-container" target="_blank">
+            <button class="next-button">Next</button>
+        </a>
     </div>
 
     <script>
