@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Location and Destination Suggestions</title>
     <style>
         body {
@@ -29,7 +29,7 @@
 
         .form-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: space between;
             margin-bottom: 10px;
             position: relative;
         }
@@ -93,6 +93,7 @@
         .image-container {
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .zoomable-image {
@@ -136,6 +137,11 @@
 
         imageContainer.addEventListener('touchend', (e) => {
             // Disable pinch zooming on the image
+            imageContainer.classList.remove('zoomed');
+        });
+
+        imageContainer.addEventListener('click', (e) => {
+            // Remove zoom effect when clicked
             imageContainer.classList.remove('zoomed');
         });
 
