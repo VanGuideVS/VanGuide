@@ -8,6 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
+            overflow: hidden; /* Hide overflow for the top bar */
         }
 
         .container {
@@ -16,20 +17,23 @@
             padding: 0;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* Hide overflowing content */
+        }
+
+        .top-bar {
+            background-color: #f5f5f5;
+            border-radius: 5px 5px 0 0;
+            position: fixed; /* Fixed position for the top bar */
+            width: 100%;
+            z-index: 2;
         }
 
         .form-container {
-            background-color: #f5f5f5;
-            border-radius: 5px;
-            position: relative;
             padding: 20px;
-            z-index: 2;
         }
 
         .form-row {
             display: flex;
-            justify-content: space between;
+            justify-content: space-between;
             margin-bottom: 10px;
             position: relative;
         }
@@ -92,34 +96,30 @@
 
         .image-container {
             position: relative;
-            overflow: hidden;
-            cursor: pointer;
+            overflow: scroll; /* Enable scrolling for the image container */
+            max-height: calc(100vh - 100px); /* Adjust the max height for the image container */
         }
 
         .zoomable-image {
             width: 100%;
-            transition: transform 0.5s; /* Add a transition for smooth zooming */
-        }
-
-        .zoomed {
-            transform: scale(1.2); /* Zoom in the image */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="form-container">
-            <div class="form-row">
-                <div class="icon"><img src="location-icon.png" alt="Location Icon"></div>
-                <input type="text" id="locationInput" placeholder="My location">
-                <div class="suggestions" id="locationSuggestions"></div>
+        <div class="top-bar">
+            <div class="form-container">
+                <div class="form-row">
+                    <div class="icon"><img src="location-icon.png" alt="Location Icon"></div>
+                    <input type="text" id="locationInput" placeholder="My location">
+                    <div class="suggestions" id="locationSuggestions"></div>
+                </div>
+                <div class="form-row">
+                    <div class="icon"><img src="destination-icon.png" alt="Destination Icon"></div>
+                    <input type="text" id="destinationInput" placeholder="My destination">
+                    <div class="suggestions" id="destinationSuggestions"></div>
+                </div>
             </div>
-            <div class="form-row">
-                <div class="icon"><img src="destination-icon.png" alt="Destination Icon"></div>
-                <input type="text" id="destinationInput" placeholder="My destination">
-                <div class="suggestions" id="destinationSuggestions"></div>
-            </div>
-            <div class="black-bar"></div>
         </div>
         <div class="image-container">
             <img src="map.png" alt="Map" class="zoomable-image">
