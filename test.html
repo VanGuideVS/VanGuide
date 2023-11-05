@@ -106,22 +106,23 @@
         }
 
         .button-container {
-            text-align: center;
+            width: 100%;
             margin-top: 20px;
         }
 
         /* Style for the "Next" button */
         .next-button {
-            background-color: #000; /* Button background color */
-            color: #fff; /* Text color */
+            background-color: #000;
+            color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 12px 24px; /* Adjust padding for button size */
-            font-size: 16px; /* Font size */
+            padding: 12px 110px; /* Increase the padding to adjust the width */
+            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
         }
-
         /* Hover effect */
         .next-button:hover {
             background-color: #c8c8c8; /* Darker color on hover */
@@ -149,7 +150,7 @@
             <img src="map.png" alt="Map" class="zoomable-image">
         </div>
 
-        <a href="https://forms.gle/7GC3sXvKwBpQyHkc9" class="button-container" target="_blank">
+        <a href="https://forms.gle/7GC3sXvKwBpQyHkc9" class="button-container">
             <button class="next-button">Next</button>
         </a>
     </div>
