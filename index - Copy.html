@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7BFC0PX3Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-K7BFC0PX3Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VanGuide Home-Page</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <section class="header">
+        <div class="header-container">
+            <img class="logo-left" src="vgs-white-cropped.jpg" alt="Logo">
+            <div class="logo-text">
+                <div class="title">VanGuide</div>
+                <div class="subtitle">by The Vanguard Spectrum</div>
+            </div>
+            <img class="logo-right" src="vgs-white-cropped.jpg" alt="Logo">
+        </div>
+    </section>  
+
+    <section class="home">
+        <div class="home-container">
+            <div class="column-left">
+                <h1>Want This To Be A Reality?</h1>
+                <p>Looking for a lecture hall or meeting room? VanGuide will guide you there!</p>
+
+                <p>Fill in the survey to help make this a reality, and participate in a raffle to win a prize!</p>
+                
+                <a href="https://forms.gle/7GC3sXvKwBpQyHkc9" class="button-link" target="_blank">
+                    <button><strong>Free something!</strong></button>
+
+                </a>
+
+                <a href="test.html" class="button-link" target="_blank">
+                    <button><strong>Vanguide go brr</strong></button>
+
+                </a>
+                    
+                
+            </div>
+            <div class="column-right">
+                <img id="rotating-image" src="Mockup-uni-1.png" alt="illustration" class="home-image">
+            </div>
+            
+            <script>
+                const images = ["Mockup-uni-1.png", "Mockup-uni-2.png", "Mockup-uni-3.png"];
+                let currentImageIndex = 0;
+                const imageElement = document.getElementById("rotating-image");
+
+                function changeImage() {
+                imageElement.style.opacity = '0';
+                setTimeout(() => {
+                    currentImageIndex++;
+                    if (currentImageIndex >= images.length) {
+                    currentImageIndex = 0;
+                    }
+                    imageElement.src = images[currentImageIndex];
+                    imageElement.style.opacity = '1';
+                }, 1000); // Match this with the CSS transition duration
+                }
+                setInterval(changeImage, 3500); // Change image every 3 seconds
+            </script>   
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-container">
+          <h2>About VanGuide</h2>
+          <p>We are passionate about guiding people to the right places. 
+             Introducing our cutting-edge indoor navigation technology! 
+             Lost in the labyrinth of lecture halls and meeting rooms? 
+             Our innovative system will guide you effortlessly to your destination, ensuring you never miss a meeting or class again. 
+             Utilizing state-of-the-art algorithms, it finds the quickest and most efficient routes. 
+             Coming soon our technology promises to revolutionize the way you navigate. 
+             Stay tuned for a seamless academic experience like never before!
+            </p>
+        </div>
+    </section>
+    
+    <section class="footer">
+        <div class="footer-container">
+            <h5>
+                Contact Us!
+            </h5>
+            <h6><a href="mailto:vanguide.vs@gmail.com" class="footer-email">vanguide.vs@gmail.com</a></h6>
+
+            
+        </div>
+
+    </section>
+
+
+</body>
+
+
+</html>
+

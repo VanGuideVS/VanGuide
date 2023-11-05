@@ -2,7 +2,255 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location and Destination Suggestions</title>
+    <style>
+        
+        body{
+            font-family: 'Georgia', serif;
+            background-color: #ffffff; /* Change to white background */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex; /* Use flexbox for layout */
+            flex-direction:row;
+            justify-content: space-evenly;
+            align-items: center;
+            width: auto;
+            height: auto;
+            margin: 0 auto;
+            background-color: #ffffff; /* White background with transparency */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-left, .logo-right{
+            max-width: 80px; 
+            margin-right: 10px; 
+            margin-bottom: 10px; 
+            width: auto; /* Adjust as needed */
+            height: auto;
+            color: #000;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            
+        }
+
+        .logo-text {
+        text-align: center; /* Centering the text */
+        }
+
+        .title {
+        font-size: 60px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-bottom: 5px; /* Add some space between title and subtitle */
+        }
+
+        .subtitle {
+        font-size: 14px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        h1, h2 {
+            color: #000000; /* Change text color to black */
+            text-shadow: 2px 2px 4px #ffffff;
+        }
+
+        .home-container{
+            /* display: grid; */
+            /* grid-template-columns: 1fr 1fr; */
+            padding: 3rem calc((100vw - 1300) / 2);
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+
+        .column-left{
+            display: flex;
+            flex-direction: column;
+            color: #000;
+            padding: 0rem 2rem;
+        }
+
+        .column-left h1{
+            margin-bottom: 20px;
+            font-size: 2.8rem;
+        }
+
+        .column-left p{
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            line-height: 1.5;
+        }
+
+        button{
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            padding: 15px 45px;
+            font-size: 16px;
+            width: 300px;
+            border: none;
+            color: white;
+            background: #000;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        button:hover{
+            background: #c8c8c8;
+            color: #000;
+        }
+
+        .column-right{
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0rem 2rem;
+        }
+
+        .home-image {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+            max-width: 65%;
+            height: auto;
+        }
+        
+        .about {
+            background-color: #ffffff; /* Light gray background */
+            color: #000000; /* Dark gray text */
+            padding: 4rem 0; /* Padding top and bottom */
+            text-align: center; /* Center the text */
+        }
+        
+        .about-container {
+            max-width: 800px; /* Set max width */
+            margin: 0 auto; /* Center the container */
+            padding: 0 20px; /* Left and right padding */
+        }
+        
+        .about h2 {
+            font-size: 2.5rem; /* Large font size for the heading */
+            margin-bottom: 1rem; /* Margin below the heading */
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; /* Font styling */
+        }
+        
+        .about p {
+            font-size: 1.2rem; /* Font size for the paragraph */
+            line-height: 1.5; /* Line height for better readability */
+            font-family: 'Georgia', serif; /* Font styling */
+            margin: 0 auto; /* Center the paragraph */
+            max-width: 700px; /* Max width for better readability */
+        }
+
+        .footer {
+            background-color: #f4f4f4; /* Light gray background for distinction */
+            padding: 20px 0; /* Vertical padding */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Shadow at the top for some depth */
+        }
+
+        .footer-container {
+            max-width: 1200px; /* Maximum width of the container */
+            margin: 0 auto; /* Centering the container */
+            padding: 0 20px; /* Side padding */
+            text-align: center; /* Center aligning the text/content */
+        }
+
+        .footer h5, .footer h6 {
+            margin: 0; /* Resetting default margin */
+            padding: 5px 0; /* Small padding for spacing */
+        }
+
+        .footer h5 {
+            font-weight: bold; /* Bold font weight for the 'contact us' text */
+            font-size: 18px; /* Adjust font size */
+        }
+
+        .footer h6 {
+            font-size: 16px; /* Adjust font size */
+            color: #555; /* Slightly darker text for better contrast on light gray background */
+        }
+
+        /* Optional: Add some hover effect on the email to indicate it's clickable */
+        .footer h6:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .footer-email {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .footer-email:hover {
+            text-decoration: underline;
+        }
+
+        a.button-link {
+            text-decoration: none;
+        }
+
+        /* Style for the "Next" button */
+        .next-button {
+            background-color: #000; /* Button background color */
+            color: #fff; /* Text color */
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px; /* Adjust padding for button size */
+            font-size: 16px; /* Font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect */
+        .next-button:hover {
+            background-color: #c8c8c8; /* Darker color on hover */
+        }
+
+
+
+        @media screen and (max-width: 760px) {
+            .home-container {
+                grid-template-columns: 1fr; /* Stacks content vertically below 760px width */
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header-container {
+                flex-direction: row; /* Stack flex items vertically */
+                align-items: center; /* Center align items */
+            }
+
+            
+
+            /* Optionally, adjust font sizes for readability */
+            .title {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<!-- <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7BFC0PX3Y"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -15,66 +263,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VanGuide Home-Page</title>
     <link rel="stylesheet" href="style.css" />
-</head>
+</head> -->
 
 <body>
     <section class="header">
         <div class="header-container">
-            <img class="logo-left" src="vgs-white-cropped.jpg" alt="Logo">
+            <!-- <img class="logo-left" src="vgs-white-cropped.jpg" alt="Logo"> -->
             <div class="logo-text">
                 <div class="title">VanGuide</div>
                 <div class="subtitle">by The Vanguard Spectrum</div>
             </div>
-            <img class="logo-right" src="vgs-white-cropped.jpg" alt="Logo">
+            <!-- <img class="logo-right" src="vgs-white-cropped.jpg" alt="Logo"> -->
         </div>
     </section>  
 
     <section class="home">
         <div class="home-container">
-            <div class="column-left">
-                <h1>Want This To Be A Reality?</h1>
-                <p>Looking for a lecture hall or meeting room? VanGuide will guide you there!</p>
-
-                <p>Fill in the survey to help make this a reality, and participate in a raffle to win a prize!</p>
-                
-                <a href="https://forms.gle/7GC3sXvKwBpQyHkc9" class="button-link" target="_blank">
-                    <button><strong>Free something!</strong></button>
-
-                </a>
-
-                <a href="test.html" class="button-link" target="_blank">
-                    <button><strong>Vanguide go brr</strong></button>
-
-                </a>
-                    
-                
-            </div>
-            <div class="column-right">
-                <img id="rotating-image" src="Mockup-uni-1.png" alt="illustration" class="home-image">
-            </div>
+        
+            <h1>Thank you for supporting VanGuide</h1>
+            <p>The software is still highly experimental. This version is used to test usability in practice.</p>
             
-            <script>
-                const images = ["Mockup-uni-1.png", "Mockup-uni-2.png", "Mockup-uni-3.png"];
-                let currentImageIndex = 0;
-                const imageElement = document.getElementById("rotating-image");
+            <!-- <a href="https://forms.gle/7GC3sXvKwBpQyHkc9" class="button-link" target="_blank">
+                <button><strong>Free something!</strong></button>
 
-                function changeImage() {
-                imageElement.style.opacity = '0';
-                setTimeout(() => {
-                    currentImageIndex++;
-                    if (currentImageIndex >= images.length) {
-                    currentImageIndex = 0;
-                    }
-                    imageElement.src = images[currentImageIndex];
-                    imageElement.style.opacity = '1';
-                }, 1000); // Match this with the CSS transition duration
-                }
-                setInterval(changeImage, 3500); // Change image every 3 seconds
-            </script>   
+            </a> -->
+
+            <div href="test.html" class="button-container">
+                <button class="next-button">Next</button>
+            </div>
+
+            <!-- <a href="test.html" class="button-link" target="_blank">
+                <button><strong>Vanguide go brr</strong></button>
+
+            </a> -->
+
         </div>
     </section>
 
-    <section class="about">
+    <!-- <section class="about">
         <div class="about-container">
           <h2>About VanGuide</h2>
           <p>We are passionate about guiding people to the right places. 
@@ -86,7 +312,7 @@
              Stay tuned for a seamless academic experience like never before!
             </p>
         </div>
-    </section>
+    </section> -->
     
     <section class="footer">
         <div class="footer-container">
