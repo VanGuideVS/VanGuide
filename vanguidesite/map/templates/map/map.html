@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location and Destination Suggestions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow: hidden; /* Hide overflow for the top bar */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar {
+            background-color: #ffffff;
+            border-radius: 5px 5px 0 0;
+            position: fixed;
+            width: 100%;
+            z-index: 3; /* Set a higher z-index to make it appear above the image */
+        }
+
+        .form-container {
+            padding: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .form-row input {
+            flex: 1;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-row .icon {
+            flex-basis: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            border: none;
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .icon img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .suggestions {
+            position: absolute;
+            background: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 0 0 5px 5px;
+            max-height: 100px;
+            overflow-y: auto;
+            top: 100%;
+            width: calc(100% - 30px);
+            display: none;
+            z-index: 1;
+            right: 0;
+        }
+
+        .form-row:hover .suggestions {
+            display: block;
+        }
+
+        .suggestion {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .black-bar {
+            height: 2px;
+            background-color: #ccc;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: auto; /* Enable scrolling for the image container */
+            max-height: calc(100vh - 100px); /* Adjust the max height for the image container */
+            margin-top: 170px;
+        }
+
+        .zoomable-image {
+            width: 100%;
+        }
+
+        .button-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Style for the "Next" button */
+        .next-button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 110px; /* Increase the padding to adjust the width */
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        /* Hover effect */
+        .next-button:hover {
+            background-color: #c8c8c8; /* Darker color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="form-container">
+                <div class="form-row">
+                    <div class="icon"><img src="location-icon.png" alt="Location Icon"></div>
+                    <input type="text" id="locationInput" placeholder="My location">
+                    <div class="suggestions" id="locationSuggestions"></div>
+                </div>
+                <div class="form-row">
+                    <div class="icon"><img src="destination-icon.png" alt="Destination Icon"></div>
+                    <input type="text" id="destinationInput" placeholder="My destination">
+                    <div class="suggestions" id="destinationSuggestions"></div>
+                </div>
+                <div class="black-bar"></div>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="map.png" alt="Map" class="zoomable-image">
+        </div>
+
+        <a href="https://forms.office.com/e/xT6Bb8jJmv" class="button-container"> 
+            <button class="next-button">Next</button>
+        </a>
+    </div>
+
+    <script>
+        const imageContainer = document.querySelector('.image-container');
+        const zoomableImage = document.querySelector('.zoomable-image');
+    
+        imageContainer.addEventListener('touchstart', (e) => {
+            // Allow pinch zooming on the image
+            imageContainer.classList.add('zoomed');
+        });
+    
+        imageContainer.addEventListener('touchend', (e) => {
+            // Disable pinch zooming on the image
+            imageContainer.classList.remove('zoomed');
+        });
+    
+        imageContainer.addEventListener('click', (e) => {
+            // Remove zoom effect when clicked
+            imageContainer.classList.remove('zoomed');
+        });
+    
+        const locationInput = document.getElementById("locationInput");
+        const locationSuggestions = document.getElementById("locationSuggestions");
+        const destinationInput = document.getElementById("destinationInput");
+        const destinationSuggestions = document.getElementById("destinationSuggestions");
+    
+        const predefinedLocations = ["Home", "Work", "Park", "Airport", "Mall"];
+        const predefinedDestinations = ["Hotel", "Restaurant", "Beach", "Cinema", "Zoo"];
+    
+        // Add event listener to show suggestions when the text input is clicked
+        locationInput.addEventListener("click", () => {
+            displaySuggestions(predefinedLocations, locationSuggestions, locationInput);
+        });
+    
+        destinationInput.addEventListener("click", () => {
+            displaySuggestions(predefinedDestinations, destinationSuggestions, destinationInput);
+        });
+    
+        function displaySuggestions(suggestions, suggestionContainer, inputField) {
+            suggestionContainer.innerHTML = "";
+            suggestions.forEach(suggestion => {
+                const suggestionElement = document.createElement("div");
+                suggestionElement.classList.add("suggestion");
+                suggestionElement.textContent = suggestion;
+                suggestionElement.addEventListener("click", () => {
+                    inputField.value = suggestion;
+                    suggestionContainer.innerHTML = "";
+                });
+                suggestionContainer.appendChild(suggestionElement);
+            });
+        }
+    </script>
+</body>
+</html>

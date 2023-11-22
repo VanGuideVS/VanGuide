@@ -1,0 +1,45 @@
+<!-- myapp/templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <form id="myForm">
+        <input type="text" id="textInput1" name="input_data1" placeholder="Type here 1" value="{{ input_data1 }}">
+        <input type="text" id="textInput2" name="input_data2" placeholder="Type here 2" value="{{ input_data2 }}">
+        <input type="submit" style="display:none;" id="submitBtn" value="Submit">
+    </form>
+    <div id="resultContainer"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#textInput1').on('input', function() {
+                sendInputToPython();
+            });
+            $('#textInput2').on('input', function() {
+                sendInputToPython();
+            });
+            sendInputToPython();
+
+            function sendInputToPython() {
+                var userInput1 = $('#textInput1').val();
+                var userInput2 = $('#textInput2').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/myapp/' + 'process-input' + '/',
+                    data: { input_data1: userInput1, input_data2: userInput2 },
+                    success: function(response) {
+                        console.log(response.message);
+                        $('#resultContainer').text(response.message);
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
